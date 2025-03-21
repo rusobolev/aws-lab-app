@@ -30,9 +30,9 @@ app.get('/metadata', async (req, res) => {
     const az = await getMetadata('placement/availability-zone');
 
     if (region && az) {
-        res.json({ region, availabilityZone: az });
+        res.send(JSON.stringify({ region, availabilityZone: az }, null, 2) + '\n');
     } else {
-        res.status(500).json({ error: 'Unable to fetch metadata' });
+        res.status(500).send(JSON.stringify({ error: 'Unable to fetch metadata' }, null, 2) + '\n');
     }
 });
 
